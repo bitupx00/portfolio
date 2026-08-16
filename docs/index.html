@@ -70,6 +70,25 @@ h2 .hl{color:var(--green)}
   background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.2);border-radius:4px;padding:2px 8px}
 .card .note{font-size:.8rem;color:var(--lock);border-left:3px solid rgba(248,81,73,.5);padding-left:10px}
 
+/* DETAILS (expandable) */
+.details-toggle{background:transparent;border:1px solid var(--border);color:var(--accent);
+  border-radius:8px;padding:8px 14px;cursor:pointer;font-size:.85rem;font-weight:600;align-self:flex-start}
+.details-toggle:hover{border-color:var(--accent)}
+.details{display:none;border-top:1px solid var(--border);margin-top:6px;padding-top:14px}
+.card.open .details{display:block}
+.details h4{color:var(--green);font-size:.85rem;text-transform:uppercase;letter-spacing:1px;margin:14px 0 8px}
+.details h4:first-child{margin-top:0}
+.details ul{list-style:none}
+.details li{color:var(--muted);font-size:.85rem;padding:3px 0 3px 18px;position:relative}
+.details li::before{content:'▸';color:var(--green);position:absolute;left:2px;font-size:.75rem;top:5px}
+.details li b{color:var(--text)}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:8px 0}
+.metric{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center}
+.metric .n{font-size:1.3rem;font-weight:800;color:var(--green)}
+.metric .l{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.card.open .details-toggle .arrow{transform:rotate(180deg)}
+.arrow{display:inline-block;transition:transform .2s}
+
 /* STATS */
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px}
 .stat{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:22px;text-align:center}
@@ -127,15 +146,15 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
       <div class="badge">🦀 <b>Rust</b> systems</div>
       <div class="badge">⚛️ <b>React 19</b> / Next.js 16</div>
       <div class="badge">🖥️ <b>Electron</b> / Tauri 2</div>
-      <div class="badge">🐘 <b>PostgreSQL</b> 17</div>
-      <div class="badge">🤖 AI integrations</div>
+      <div class="badge">🐘 <b>PostgreSQL</b> 17 + pgvector</div>
+      <div class="badge">🤖 RAG / AI integrations</div>
       <div class="badge">🎮 Real-time / WebRTC</div>
     </div>
   </div>
 </header>
 
 <!-- ABOUT -->
-<section id="sobre-mi" id="about">
+<section id="about">
   <div class="wrap">
     <h2 data-lang-es><span class="hl">01.</span> Sobre mí</h2>
     <h2 data-lang-en><span class="hl">01.</span> About</h2>
@@ -143,54 +162,126 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
     <p class="sub" data-lang-en>Santiago, Chile · available for freelance</p>
     <div class="about-grid">
       <div>
-        <p data-lang-es>Desarrollador full-stack y analista IT. Construyo sistemas empresariales reales: plataformas de gestión, automatización de procesos, juegos online y herramientas con IA. No hago demos — hago productos con tests, CI y documentación que operan con empresas reales.</p>
+        <p data-lang-es>Desarrollador full-stack y analista IT. Construyo sistemas empresariales reales: plataformas de gestión contable, automatización de procesos, juegos online y herramientas con IA. No hago demos — hago productos con tests, CI y documentación que operan con empresas reales.</p>
         <p data-lang-en>Full-stack developer and IT analyst. I build real enterprise systems: management platforms, process automation, online games and AI tooling. I don't build demos — I build products with tests, CI and docs that run for real businesses.</p>
         <div class="stack">
           <h3 data-lang-es>Stack principal</h3><h3 data-lang-en>Core stack</h3>
           <div class="chips">
-            <span class="chip">Rust</span><span class="chip">TypeScript</span><span class="chip">React 19</span>
-            <span class="chip">Next.js 16</span><span class="chip">Python</span><span class="chip">Electron</span>
-            <span class="chip">Tauri 2</span><span class="chip">PostgreSQL</span><span class="chip">MariaDB</span>
-            <span class="chip">Docker</span><span class="chip">Linux</span><span class="chip">WebRTC</span>
-            <span class="chip">GitHub Actions</span>
+            <span class="chip">Rust</span><span class="chip">TypeScript 5.9</span><span class="chip">React 19</span>
+            <span class="chip">Next.js 16</span><span class="chip">Python</span><span class="chip">Electron 28</span>
+            <span class="chip">Tauri 2</span><span class="chip">PostgreSQL 17</span><span class="chip">pgvector</span>
+            <span class="chip">WebSocket</span><span class="chip">Docker</span><span class="chip">PM2</span>
+            <span class="chip">Playwright</span><span class="chip">Sentry</span>
           </div>
         </div>
       </div>
       <div class="stats">
         <div class="stat"><div class="num">14+</div><div class="lbl" data-lang-es>módulos en producción</div><div class="lbl" data-lang-en>modules in production</div></div>
+        <div class="stat"><div class="num">429+</div><div class="lbl" data-lang-es>rutas API</div><div class="lbl" data-lang-en>API routes</div></div>
+        <div class="stat"><div class="num">186+</div><div class="lbl">tablas PostgreSQL</div></div>
         <div class="stat"><div class="num">8h→15m</div><div class="lbl" data-lang-es>procesos automatizados</div><div class="lbl" data-lang-en>processes automated</div></div>
-        <div class="stat"><div class="num">3</div><div class="lbl" data-lang-es>lenguajes núcleo</div><div class="lbl" data-lang-en">core languages</div></div>
-        <div class="stat"><div class="num">4.7k+</div><div class="lbl" data-lang-es>horas/año ahorradas a clientes</div><div class="lbl" data-lang-en>hours/year saved for clients</div></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="proyectos" id="projects" style="background:var(--bg2)">
+<section id="projects" style="background:var(--bg2)">
   <div class="wrap">
     <h2 data-lang-es><span class="hl">02.</span> Proyectos</h2>
     <h2 data-lang-en><span class="hl">02.</span> Projects</h2>
-    <p class="sub" data-lang-es>Productos en producción + código abierto. Los proyectos privados se listan bajo confidencialidad.</p>
-    <p class="sub" data-lang-en>Production products + open source. Private projects listed under confidentiality.</p>
+    <p class="sub" data-lang-es>Productos en producción + código abierto. Los proyectos privados se describen técnicamente completos; datos de negocio bajo confidencialidad.</p>
+    <p class="sub" data-lang-en>Production products + open source. Private projects get full technical detail; business data stays confidential.</p>
     <div class="grid">
 
-      <div class="card">
-        <div class="top"><h3>🔒 HuaboDesk</h3><span class="lock-tag">CONFIDENTIAL</span></div>
-        <p data-lang-es>Suite empresarial integral para el mercado chileno: contabilidad, remuneraciones, gestión documental, correo y colaboración. 14+ módulos integrados sirviendo a empresas reales. Next.js + PostgreSQL + cliente de escritorio propio.</p>
-        <p data-lang-en>All-in-one enterprise suite for the Chilean market: accounting, payroll, document management, email and collaboration. 14+ integrated modules serving real businesses. Next.js + PostgreSQL + custom desktop client.</p>
-        <div class="note" data-lang-es>Proyecto confidencial — arquitectura interna y datos no públicos. Alcance conversable bajo NDA.</div>
-        <div class="note" data-lang-en>Confidential project — internal architecture and data not public. Scope discussable under NDA.</div>
-        <div class="tech"><span>Next.js 16</span><span>PostgreSQL 17</span><span>Electron</span><span>TypeScript</span></div>
+      <!-- HUABODESK -->
+      <div class="card" style="grid-column:1/-1">
+        <div class="top">
+          <h3>🔒 HuaboDesk</h3>
+          <div style="display:flex;gap:8px"><span class="lock-tag">CONFIDENTIAL</span><span class="tag live" data-lang-es>EN PRODUCCIÓN</span><span class="tag live" data-lang-en>IN PRODUCTION</span></div>
+        </div>
+        <p data-lang-es>Suite empresarial contable integral para el mercado chileno: contabilidad, remuneraciones, cumplimiento tributario SII, gestión documental, correo corporativo y colaboración. 14+ módulos integrados operando con empresas reales.</p>
+        <p data-lang-en>All-in-one accounting & business management suite for the Chilean market: accounting, payroll, SII tax compliance, document management, corporate email and collaboration. 14+ integrated modules serving real businesses.</p>
+        <div class="metrics">
+          <div class="metric"><div class="n">429+</div><div class="l">API routes</div></div>
+          <div class="metric"><div class="n">186+</div><div class="l">DB tables</div></div>
+          <div class="metric"><div class="n">70+</div><div class="l">IPC channels</div></div>
+          <div class="metric"><div class="n">14k</div><div class="l">graph nodes</div></div>
+          <div class="metric"><div class="n">14+</div><div class="l">módulos/modules</div></div>
+        </div>
+        <button class="details-toggle" onclick="toggleDetails(this)" data-lang-es>⚡ Detalle técnico <span class="arrow">▾</span></button>
+        <button class="details-toggle" onclick="toggleDetails(this)" data-lang-en>⚡ Technical detail <span class="arrow">▾</span></button>
+        <div class="details">
+          <h4 data-lang-es>Arquitectura</h4><h4 data-lang-en>Architecture</h4>
+          <ul>
+            <li><b>Web:</b> Next.js 16 (App Router) + React 19 + TypeScript 5.9 — 429+ rutas API, SSR</li>
+            <li><b>Base de datos:</b> PostgreSQL 17 — 186+ tablas, 27 funciones SQL, <b>pgvector</b> para búsqueda semántica</li>
+            <li><b>Multi-proceso (PM2):</b> servidor web + WebSocket independiente + indexación RAG + workers de fondo (vigilancia documental, retención de correo, conciliación RAG, auto-deploy)</li>
+            <li><b>Desktop (Electron 28):</b> 70+ canales IPC con whitelist estricta, scraping del portal SII vía Playwright, bandeja de sistema, auto-actualización NSIS, sincronización de archivos con motor Rust</li>
+            <li><b>Seguridad:</b> JWT + refresh, bcrypt, RBAC, TOTP 2FA, context isolation + sandbox, Sentry</li>
+          </ul>
+          <h4 data-lang-es>Módulos</h4><h4 data-lang-en>Modules</h4>
+          <ul>
+            <li><b>Contabilidad/SII:</b> libros de compras y ventas, declaraciones mensuales, ajustes código 48, exportación CSV SII, certificación SII, verificación F29</li>
+            <li><b>Remuneraciones:</b> liquidaciones de sueldo, finiquitos, proceso Previred</li>
+            <li><b>Finanzas:</b> estado financiero, panel de cobros PayBoard integrado</li>
+            <li><b>Comunicación:</b> mail corporativo completo (compose, búsqueda global, cola de reintentos), chat de equipo con adjuntos (HeChat)</li>
+            <li><b>Documentos:</b> gestión con watcher en tiempo real, búsqueda IA con <b>RAG + pgvector</b>, extracción documental con IA</li>
+            <li><b>Operación:</b> motor de workflows con recordatorios/aprobaciones, Gantt de proyectos, asistencia, atención de clientes, coordinación, informes Excel</li>
+            <li><b>Administración:</b> equipos y roles, logs de auditoría, registro con aprobación</li>
+          </ul>
+          <h4 data-lang-es>Ingeniería avanzada</h4><h4 data-lang-en>Advanced engineering</h4>
+          <ul>
+            <li>Grafo de conocimiento del codebase: <b>14.009 nodos, 46.142 aristas, 512 comunidades</b> — análisis arquitectónico y detección de deuda técnica</li>
+            <li>Tests: suite Vitest + Playwright</li>
+          </ul>
+        </div>
+        <div class="note" data-lang-es>Proyecto confidencial — clientes y datos de negocio no públicos. Alcance conversable bajo NDA.</div>
+        <div class="note" data-lang-en>Confidential — clients and business data not public. Scope discussable under NDA.</div>
+        <div class="tech"><span>Next.js 16</span><span>React 19</span><span>TypeScript 5.9</span><span>PostgreSQL 17</span><span>pgvector</span><span>Electron 28</span><span>Playwright</span><span>PM2</span><span>Sentry</span></div>
       </div>
 
-      <div class="card">
-        <div class="top"><h3>🔒 PayBoard</h3><span class="lock-tag">CONFIDENTIAL</span></div>
-        <p data-lang-es>Panel financiero de escritorio como aplicación nativa en Rust + Tauri 2: registro de pagos, cálculo de saldos y deudas, comprobantes. Binario único, arranque inmediato, motor de dominio puro con golden tests.</p>
-        <p data-lang-en>Desktop financial panel as a native Rust + Tauri 2 app: payment tracking, balance and debt calculation, receipts. Single binary, instant startup, pure domain engine with golden tests.</p>
+      <!-- PAYBOARD -->
+      <div class="card" style="grid-column:1/-1">
+        <div class="top">
+          <h3>🔒 PayBoard</h3>
+          <div style="display:flex;gap:8px"><span class="lock-tag">CONFIDENTIAL</span><span class="tag live">RUST + TAURI 2</span></div>
+        </div>
+        <p data-lang-es>Panel de administración financiera de escritorio para gestionar los cobros mensuales de carteras de ~1.000 clientes de contabilidad. Reconstruido como aplicación 100% nativa en Rust + Tauri 2: un binario único con webview del sistema.</p>
+        <p data-lang-en>Desktop financial administration panel managing monthly collections for ~1,000-client accounting portfolios. Rebuilt as a 100% native Rust + Tauri 2 application: a single binary using the system webview.</p>
+        <div class="metrics">
+          <div class="metric"><div class="n">21</div><div class="l">columnas tabla</div></div>
+          <div class="metric"><div class="n">~90</div><div class="l">conceptos</div></div>
+          <div class="metric"><div class="n">100%</div><div class="l">Rust domain</div></div>
+          <div class="metric"><div class="n">1</div><div class="l">binario único</div></div>
+        </div>
+        <button class="details-toggle" onclick="toggleDetails(this)" data-lang-es>⚡ Detalle técnico <span class="arrow">▾</span></button>
+        <button class="details-toggle" onclick="toggleDetails(this)" data-lang-en>⚡ Technical detail <span class="arrow">▾</span></button>
+        <div class="details">
+          <h4 data-lang-es>Motor de dominio (pb-core, Rust puro sin dependencias)</h4><h4 data-lang-en>Domain engine (pb-core, pure Rust, zero deps)</h4>
+          <ul>
+            <li>Propagación de saldos mes a mes: deuda N → N+1, sobrepago → abono — saldos jamás editables a mano</li>
+            <li>Anticipos con signo (negativos = a favor del cliente), pagos con valor absoluto</li>
+            <li>Parseo monetario CLP estricto (formato 1.500.000, rechazo de basura — nunca dígitos parciales)</li>
+            <li><b>Golden tests de paridad</b> que congelan cada regla de negocio como contrato ejecutable</li>
+          </ul>
+          <h4 data-lang-es>Funcionalidad</h4><h4 data-lang-en>Features</h4>
+          <ul>
+            <li>Tabla mensual estilo hoja de cálculo de <b>21 columnas</b> (impuestos, contabilidad, previred, visas, certificados, multas, trámites, patentes, rentas…), coloreado 3 niveles, menú contextual, navegación tipo Excel</li>
+            <li><b>Comprobantes PDF</b> individuales y batch con <b>fuente CJK embebida</b> (Noto Sans SC subset) para conceptos bilingües ES/ZH</li>
+            <li><b>Modo colaborativo multi-operador:</b> cola de aprobaciones, presencia, changelog, notificaciones</li>
+            <li><b>Verificación F29:</b> cruce automático del impuesto declarado al SII vs. lo efectivamente cobrado</li>
+            <li>Import/export Excel, atajos configurables, roles granulares, sistema de diseño propio</li>
+          </ul>
+          <h4 data-lang-es>Por qué nativo</h4><h4 data-lang-en>Why native</h4>
+          <ul>
+            <li>Elimina servidor Node + Chromium embebido → binario de unidades de MB, RAM objetivo ~80–150 MB, arranque sub-segundo</li>
+            <li>Un único motor financiero tipado y testeado (antes había dos motores divergentes)</li>
+          </ul>
+        </div>
         <div class="note" data-lang-es>Proyecto confidencial — código y datos no públicos.</div>
-        <div class="note" data-lang-en>Confidential project — code and data not public.</div>
-        <div class="tech"><span>Rust</span><span>Tauri 2</span><span>PostgreSQL</span></div>
+        <div class="note" data-lang-en>Confidential — code and data not public.</div>
+        <div class="tech"><span>Rust</span><span>Tauri 2</span><span>PostgreSQL</span><span>PDF/CJK</span><span>Golden tests</span></div>
       </div>
 
       <div class="card">
@@ -209,23 +300,23 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
 
       <div class="card">
         <div class="top"><h3><a href="https://github.com/bitupx00/otbforge">⚒️ OTBForge</a></h3><span class="tag live">492 TESTS</span></div>
-        <p data-lang-es>Generador de mapas con IA: describe un mapa en texto → obtén un .otbm listo para producción. Terreno Perlin multi-octava (11 biomas), mazmorras BSP multi-piso, pueblos con NPCs. Python puro sin dependencias + port Rust.</p>
-        <p data-lang-en>AI map generator: describe a map in text → get a production-ready .otbm. Multi-octave Perlin terrain (11 biomes), multi-floor BSP dungeons, towns with NPCs. Zero-dependency Python + Rust port.</p>
+        <p data-lang-es>Generador de mapas con IA: describe un mapa en texto → obtén un .otbm listo para producción. Terreno Perlin multi-octava (11 biomas, ríos, islas), mazmorras BSP multi-piso (5 tipos de sala), pueblos con 3 estilos y NPCs. Python puro sin dependencias + port Rust.</p>
+        <p data-lang-en>AI map generator: describe a map in text → get a production-ready .otbm. Multi-octave Perlin terrain (11 biomes, rivers, islands), multi-floor BSP dungeons (5 room types), towns with 3 styles and NPCs. Zero-dependency Python + Rust port.</p>
         <div class="tech"><span>Python</span><span>Rust</span><span>Perlin</span><span>BSP</span><span>LLM</span></div>
       </div>
 
       <div class="card">
         <div class="top"><h3><a href="https://github.com/bitupx00/ludo-party">🎲 Ludo Party</a></h3><span class="tag live">DEMO ▸ vercel</span></div>
-        <p data-lang-es>Parchís online estilo Ludo Club: WebRTC P2P sin servidor de juego, bots con personalidad, pasar-y-jugar, equipos 2v2, stickers. Bilingüe ES/EN, PWA mobile-first.</p>
-        <p data-lang-en>Online Ludo Club-style parchís: WebRTC P2P with no game server, personality bots, pass-and-play, 2v2 teams, stickers. Bilingual, mobile-first PWA.</p>
+        <p data-lang-es>Parchís online estilo Ludo Club: WebRTC P2P sin servidor de juego (bot toma el asiento si alguien se desconecta), bots con personalidad, pasar-y-jugar, equipos 2v2, stickers, sonidos sintetizados, video-chat opcional. Bilingüe ES/EN, PWA mobile-first.</p>
+        <p data-lang-en>Online Ludo Club-style parchís: WebRTC P2P with no game server (a bot takes the seat on disconnect), personality bots, pass-and-play, 2v2 teams, stickers, synthesized sounds, optional video chat. Bilingual, mobile-first PWA.</p>
         <div class="tech"><span>React</span><span>TypeScript</span><span>WebRTC</span><span>PWA</span></div>
       </div>
 
       <div class="card">
         <div class="top"><h3><a href="https://github.com/bitupx00/huabodesk-gantproyetos">📊 HuaboDesk Proyectos</a></h3><span class="tag live">OPEN SOURCE</span></div>
-        <p data-lang-es>Gantt de gestión de proyectos: fases en días hábiles con feriados chilenos, progreso automático desde checklists, vista pública + modo admin. SQLite local.</p>
-        <p data-lang-en>Project management Gantt: business-day phases with Chilean holidays, automatic progress from checklists, public view + admin mode. Local SQLite.</p>
-        <div class="tech"><span>Next.js 16</span><span>React 19</span><span>SQLite</span><span>Radix UI</span></div>
+        <p data-lang-es>Gantt de gestión de proyectos: fases en días hábiles con feriados legales chilenos, progreso automático desde checklists (promedio ponderado), vista pública + modo admin, edición desde el Gantt. SQL parametrizado a mano sobre SQLite.</p>
+        <p data-lang-en>Project management Gantt: business-day phases with Chilean statutory holidays, automatic progress from checklists (weighted average), public read-only view + admin mode, edit-from-Gantt popups. Hand-written parameterized SQL over SQLite.</p>
+        <div class="tech"><span>Next.js 16</span><span>React 19</span><span>SQLite</span><span>Radix UI</span><span>Vitest</span></div>
       </div>
 
     </div>
@@ -233,7 +324,7 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
 </section>
 
 <!-- CONTACT -->
-<section id="contacto" id="contact">
+<section id="contact">
   <div class="wrap">
     <div class="contact-box">
       <h2 data-lang-es>¿Construimos algo <span class="hl">juntos</span>?</h2>
@@ -260,6 +351,9 @@ function setLang(l){
   document.getElementById('btn-es').classList.toggle('active',l==='es');
   document.getElementById('btn-en').classList.toggle('active',l==='en');
   document.documentElement.lang=l==='es'?'es':'en';
+}
+function toggleDetails(btn){
+  btn.closest('.card').classList.toggle('open');
 }
 </script>
 </body>
