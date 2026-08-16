@@ -70,7 +70,7 @@ Sistema de **automatización web adaptativo** que realiza operaciones en portale
 **Qué lo hace distinto:**
 
 - **Navegador y perfil reales:** opera con la sesión logueada del usuario y su fingerprint genuino — evita CAPTCHAs y detección de bots que bloquean herramientas tradicionales
-- **Scraping adaptativo** (inspirado en Scrapling): localiza elementos aunque la estructura del sitio cambie — selectores resilientes con recuperación automática
+- **Scraping adaptativo**: localiza elementos aunque la estructura del sitio cambie — selectores resilientes con recuperación automática
 - **Servidor WebSocket/HTTP:** API de control remoto para disparar operaciones desde la plataforma
 - **MCP server integrado:** controlable por asistentes de IA (Claude, Cursor, Windsurf) — los agentes pueden ejecutar operaciones de navegador como herramientas
 - **Zero-install:** solo la extensión de Chrome, sin descargar navegadores adicionales (~300–500 MB ahorrados vs Playwright)
@@ -181,7 +181,7 @@ Adaptive **web automation system** that performs operations on external portals 
 **What makes it different:**
 
 - **Real browser & profile:** operates with the user's logged session and genuine fingerprint — bypasses the CAPTCHAs and bot detection that block traditional tooling
-- **Adaptive scraping** (Scrapling-inspired): locates elements even when the site structure changes — resilient selectors with automatic recovery
+- **Adaptive scraping**: locates elements even when the site structure changes — resilient selectors with automatic recovery
 - **WebSocket/HTTP server:** remote-control API to trigger operations from the platform
 - **Integrated MCP server:** controllable by AI assistants (Claude, Cursor, Windsurf) — agents execute browser operations as tools
 - **Zero-install:** just the Chrome extension, no extra browser downloads (~300–500 MB saved vs Playwright)
