@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brad M Blanco — Portfolio</title>
+<meta name="description" content="IT Analyst · Full-Stack Developer · Rust · TypeScript · Python — Santiago, Chile">
+<style>
+:root{
+  --bg:#0d1117;--bg2:#161b22;--card:#1c2330;--border:#30363d;
+  --text:#e6edf3;--muted:#8b949e;--green:#00ff41;--accent:#58a6ff;
+  --gold:#d29922;--lock:#f85149;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* HERO */
+header{padding:80px 0 60px;border-bottom:1px solid var(--border);
+  background:radial-gradient(ellipse at 50% 0%,rgba(0,255,65,.06),transparent 60%)}
+h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-1px}
+h1 .hl{color:var(--green)}
+.tagline{font-size:1.15rem;color:var(--muted);margin-top:10px}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.badge{background:var(--bg2);border:1px solid var(--border);border-radius:20px;
+  padding:6px 14px;font-size:.85rem;color:var(--text)}
+.badge b{color:var(--green)}
+
+/* NAV */
+nav{position:sticky;top:0;background:rgba(13,17,23,.92);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);z-index:10}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;padding:14px 24px}
+nav .links{display:flex;gap:22px;font-size:.95rem}
+.lang-switch{display:flex;gap:8px}
+.lang-switch button{background:var(--bg2);border:1px solid var(--border);color:var(--muted);
+  padding:5px 14px;border-radius:8px;cursor:pointer;font-size:.85rem}
+.lang-switch button.active{color:var(--green);border-color:var(--green)}
+
+/* SECTIONS */
+section{padding:64px 0}
+h2{font-size:1.8rem;margin-bottom:8px;letter-spacing:-.5px}
+h2 .hl{color:var(--green)}
+.sub{color:var(--muted);margin-bottom:36px}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.about-grid p{color:var(--text)}
+.stack h3{color:var(--gold);font-size:.9rem;text-transform:uppercase;letter-spacing:1.5px;margin:18px 0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:.8rem;color:var(--text);font-family:Consolas,monospace}
+
+/* PROJECTS */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;
+  display:flex;flex-direction:column;gap:12px;transition:transform .18s,border-color .18s}
+.card:hover{transform:translateY(-4px);border-color:var(--green)}
+.card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.card h3{font-size:1.15rem}
+.card h3 a{color:var(--text)}
+.lock-tag{background:rgba(248,81,73,.12);color:var(--lock);border:1px solid rgba(248,81,73,.4);
+  border-radius:6px;padding:2px 10px;font-size:.7rem;font-weight:700;letter-spacing:1px;white-space:nowrap}
+.tag{border-radius:6px;padding:2px 10px;font-size:.7rem;font-weight:700;letter-spacing:1px;white-space:nowrap}
+.tag.live{background:rgba(0,255,65,.1);color:var(--green);border:1px solid rgba(0,255,65,.35)}
+.card p{color:var(--muted);font-size:.92rem;flex:1}
+.card .tech{display:flex;flex-wrap:wrap;gap:6px}
+.card .tech span{font-family:Consolas,monospace;font-size:.72rem;color:var(--accent);
+  background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.2);border-radius:4px;padding:2px 8px}
+.card .note{font-size:.8rem;color:var(--lock);border-left:3px solid rgba(248,81,73,.5);padding-left:10px}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px}
+.stat{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:22px;text-align:center}
+.stat .num{font-size:2rem;font-weight:800;color:var(--green)}
+.stat .lbl{color:var(--muted);font-size:.85rem;margin-top:4px}
+
+/* CONTACT */
+.contact-box{background:linear-gradient(135deg,var(--bg2),var(--card));border:1px solid var(--border);
+  border-radius:16px;padding:44px;text-align:center}
+.contact-box h2{margin-bottom:10px}
+.btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:24px}
+.btn{padding:12px 26px;border-radius:10px;font-weight:700;font-size:.95rem;border:1px solid var(--border)}
+.btn.primary{background:var(--green);color:#0d1117;border-color:var(--green)}
+.btn.primary:hover{text-decoration:none;box-shadow:0 0 24px rgba(0,255,65,.35)}
+.btn.ghost{background:transparent;color:var(--text)}
+.btn.ghost:hover{text-decoration:none;border-color:var(--green)}
+
+footer{border-top:1px solid var(--border);padding:30px 0;color:var(--muted);font-size:.85rem;text-align:center}
+
+/* LANG */
+[data-lang-en]{display:none}
+body.lang-en [data-lang-es]{display:none}
+body.lang-en [data-lang-en]{display:block}
+body.lang-en span[data-lang-en],body.lang-en a[data-lang-en]{display:inline}
+body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
+
+@media(max-width:820px){
+  .about-grid{grid-template-columns:1fr}
+  nav .links{display:none}
+}
+</style>
+</head>
+<body class="lang-es">
+
+<nav>
+  <div class="wrap">
+    <div style="font-weight:800"><span style="color:var(--green)">&gt;_</span> Brad M Blanco</div>
+    <div class="links">
+      <a href="#sobre-mi" data-lang-es>Sobre mí</a><a href="#about" data-lang-en>About</a>
+      <a href="#proyectos" data-lang-es>Proyectos</a><a href="#projects" data-lang-en>Projects</a>
+      <a href="#contacto" data-lang-es>Contacto</a><a href="#contact" data-lang-en>Contact</a>
+    </div>
+    <div class="lang-switch">
+      <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <h1><span data-lang-es>Construyo sistemas que</span><span data-lang-en>I build systems that</span> <span class="hl" data-lang-es>operan en producción</span><span class="hl" data-lang-en>run in production</span></h1>
+    <p class="tagline">IT Analyst · Full-Stack Developer · Rust / TypeScript / Python · Santiago, Chile</p>
+    <div class="badges">
+      <div class="badge">🦀 <b>Rust</b> systems</div>
+      <div class="badge">⚛️ <b>React 19</b> / Next.js 16</div>
+      <div class="badge">🖥️ <b>Electron</b> / Tauri 2</div>
+      <div class="badge">🐘 <b>PostgreSQL</b> 17</div>
+      <div class="badge">🤖 AI integrations</div>
+      <div class="badge">🎮 Real-time / WebRTC</div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="sobre-mi" id="about">
+  <div class="wrap">
+    <h2 data-lang-es><span class="hl">01.</span> Sobre mí</h2>
+    <h2 data-lang-en><span class="hl">01.</span> About</h2>
+    <p class="sub" data-lang-es>Santiago de Chile · disponible para freelance</p>
+    <p class="sub" data-lang-en>Santiago, Chile · available for freelance</p>
+    <div class="about-grid">
+      <div>
+        <p data-lang-es>Desarrollador full-stack y analista IT. Construyo sistemas empresariales reales: plataformas de gestión, automatización de procesos, juegos online y herramientas con IA. No hago demos — hago productos con tests, CI y documentación que operan con empresas reales.</p>
+        <p data-lang-en>Full-stack developer and IT analyst. I build real enterprise systems: management platforms, process automation, online games and AI tooling. I don't build demos — I build products with tests, CI and docs that run for real businesses.</p>
+        <div class="stack">
+          <h3 data-lang-es>Stack principal</h3><h3 data-lang-en>Core stack</h3>
+          <div class="chips">
+            <span class="chip">Rust</span><span class="chip">TypeScript</span><span class="chip">React 19</span>
+            <span class="chip">Next.js 16</span><span class="chip">Python</span><span class="chip">Electron</span>
+            <span class="chip">Tauri 2</span><span class="chip">PostgreSQL</span><span class="chip">MariaDB</span>
+            <span class="chip">Docker</span><span class="chip">Linux</span><span class="chip">WebRTC</span>
+            <span class="chip">GitHub Actions</span>
+          </div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="num">14+</div><div class="lbl" data-lang-es>módulos en producción</div><div class="lbl" data-lang-en>modules in production</div></div>
+        <div class="stat"><div class="num">8h→15m</div><div class="lbl" data-lang-es>procesos automatizados</div><div class="lbl" data-lang-en>processes automated</div></div>
+        <div class="stat"><div class="num">3</div><div class="lbl" data-lang-es>lenguajes núcleo</div><div class="lbl" data-lang-en">core languages</div></div>
+        <div class="stat"><div class="num">4.7k+</div><div class="lbl" data-lang-es>horas/año ahorradas a clientes</div><div class="lbl" data-lang-en>hours/year saved for clients</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="proyectos" id="projects" style="background:var(--bg2)">
+  <div class="wrap">
+    <h2 data-lang-es><span class="hl">02.</span> Proyectos</h2>
+    <h2 data-lang-en><span class="hl">02.</span> Projects</h2>
+    <p class="sub" data-lang-es>Productos en producción + código abierto. Los proyectos privados se listan bajo confidencialidad.</p>
+    <p class="sub" data-lang-en>Production products + open source. Private projects listed under confidentiality.</p>
+    <div class="grid">
+
+      <div class="card">
+        <div class="top"><h3>🔒 HuaboDesk</h3><span class="lock-tag">CONFIDENTIAL</span></div>
+        <p data-lang-es>Suite empresarial integral para el mercado chileno: contabilidad, remuneraciones, gestión documental, correo y colaboración. 14+ módulos integrados sirviendo a empresas reales. Next.js + PostgreSQL + cliente de escritorio propio.</p>
+        <p data-lang-en>All-in-one enterprise suite for the Chilean market: accounting, payroll, document management, email and collaboration. 14+ integrated modules serving real businesses. Next.js + PostgreSQL + custom desktop client.</p>
+        <div class="note" data-lang-es>Proyecto confidencial — arquitectura interna y datos no públicos. Alcance conversable bajo NDA.</div>
+        <div class="note" data-lang-en>Confidential project — internal architecture and data not public. Scope discussable under NDA.</div>
+        <div class="tech"><span>Next.js 16</span><span>PostgreSQL 17</span><span>Electron</span><span>TypeScript</span></div>
+      </div>
+
+      <div class="card">
+        <div class="top"><h3>🔒 PayBoard</h3><span class="lock-tag">CONFIDENTIAL</span></div>
+        <p data-lang-es>Panel financiero de escritorio como aplicación nativa en Rust + Tauri 2: registro de pagos, cálculo de saldos y deudas, comprobantes. Binario único, arranque inmediato, motor de dominio puro con golden tests.</p>
+        <p data-lang-en>Desktop financial panel as a native Rust + Tauri 2 app: payment tracking, balance and debt calculation, receipts. Single binary, instant startup, pure domain engine with golden tests.</p>
+        <div class="note" data-lang-es>Proyecto confidencial — código y datos no públicos.</div>
+        <div class="note" data-lang-en>Confidential project — code and data not public.</div>
+        <div class="tech"><span>Rust</span><span>Tauri 2</span><span>PostgreSQL</span></div>
+      </div>
+
+      <div class="card">
+        <div class="top"><h3><a href="https://github.com/bitupx00/ShinobiGO">🥷 ShinobiGO</a></h3><span class="tag live">MMORPG</span></div>
+        <p data-lang-es>MMORPG online con mundo original (Kesshō). Cliente TypeScript, gateway de borde en Rust (tokio), servidor en tiempo real protocolo Tibia 8.60, MariaDB. Progresión dual: nivel + rango por Pruebas de Umbral no combativas.</p>
+        <p data-lang-en>Online MMORPG with an original world (Kesshō). TypeScript client, Rust edge gateway (tokio), real-time Tibia 8.60 protocol server, MariaDB. Dual progression: combat levels + rank via non-combat Threshold Trials.</p>
+        <div class="tech"><span>TypeScript</span><span>Rust</span><span>WebSocket</span><span>MariaDB</span><span>Tauri</span></div>
+      </div>
+
+      <div class="card">
+        <div class="top"><h3><a href="https://github.com/bitupx00/reportavnzla">🇻🇪 ReportaVNZLA</a></h3><span class="tag live">LIVE ▸ reportavnzla.com</span></div>
+        <p data-lang-es>Plataforma humanitaria sin fines de lucro: registro y búsqueda de personas tras el terremoto de Venezuela 2026. En producción. Mapa interactivo, búsqueda por cédula, flujo optimizado para emergencias.</p>
+        <p data-lang-en>Non-profit humanitarian platform: registry and search for missing persons after the 2026 Venezuela earthquake. Live in production. Interactive map, ID search, emergency-optimized flow.</p>
+        <div class="tech"><span>Next.js 14</span><span>TypeScript</span><span>Leaflet</span><span>Neon PostgreSQL</span><span>Vercel</span></div>
+      </div>
+
+      <div class="card">
+        <div class="top"><h3><a href="https://github.com/bitupx00/otbforge">⚒️ OTBForge</a></h3><span class="tag live">492 TESTS</span></div>
+        <p data-lang-es>Generador de mapas con IA: describe un mapa en texto → obtén un .otbm listo para producción. Terreno Perlin multi-octava (11 biomas), mazmorras BSP multi-piso, pueblos con NPCs. Python puro sin dependencias + port Rust.</p>
+        <p data-lang-en>AI map generator: describe a map in text → get a production-ready .otbm. Multi-octave Perlin terrain (11 biomes), multi-floor BSP dungeons, towns with NPCs. Zero-dependency Python + Rust port.</p>
+        <div class="tech"><span>Python</span><span>Rust</span><span>Perlin</span><span>BSP</span><span>LLM</span></div>
+      </div>
+
+      <div class="card">
+        <div class="top"><h3><a href="https://github.com/bitupx00/ludo-party">🎲 Ludo Party</a></h3><span class="tag live">DEMO ▸ vercel</span></div>
+        <p data-lang-es>Parchís online estilo Ludo Club: WebRTC P2P sin servidor de juego, bots con personalidad, pasar-y-jugar, equipos 2v2, stickers. Bilingüe ES/EN, PWA mobile-first.</p>
+        <p data-lang-en>Online Ludo Club-style parchís: WebRTC P2P with no game server, personality bots, pass-and-play, 2v2 teams, stickers. Bilingual, mobile-first PWA.</p>
+        <div class="tech"><span>React</span><span>TypeScript</span><span>WebRTC</span><span>PWA</span></div>
+      </div>
+
+      <div class="card">
+        <div class="top"><h3><a href="https://github.com/bitupx00/huabodesk-gantproyetos">📊 HuaboDesk Proyectos</a></h3><span class="tag live">OPEN SOURCE</span></div>
+        <p data-lang-es>Gantt de gestión de proyectos: fases en días hábiles con feriados chilenos, progreso automático desde checklists, vista pública + modo admin. SQLite local.</p>
+        <p data-lang-en>Project management Gantt: business-day phases with Chilean holidays, automatic progress from checklists, public view + admin mode. Local SQLite.</p>
+        <div class="tech"><span>Next.js 16</span><span>React 19</span><span>SQLite</span><span>Radix UI</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contacto" id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <h2 data-lang-es>¿Construimos algo <span class="hl">juntos</span>?</h2>
+      <h2 data-lang-en>Let's <span class="hl">build</span> something together</h2>
+      <p class="sub" data-lang-es style="margin-top:8px">Desarrollo full-stack · sistemas Rust · automatización · integraciones IA</p>
+      <p class="sub" data-lang-en style="margin-top:8px">Full-stack development · Rust systems · automation · AI integrations</p>
+      <div class="btns">
+        <a class="btn primary" href="mailto:mbitupx@gmail.com">📧 Email</a>
+        <a class="btn ghost" href="https://github.com/bitupx00" target="_blank">🐙 GitHub</a>
+        <a class="btn ghost" href="https://t.me/I_Am_Bitupx" target="_blank">💬 Telegram</a>
+        <a class="btn ghost" href="https://x.com/I_Am_Bitupx" target="_blank">🐦 X</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Brad M Blanco · Santiago, Chile · <a href="https://github.com/bitupx00">github.com/bitupx00</a></div>
+</footer>
+
+<script>
+function setLang(l){
+  document.body.className='lang-'+l;
+  document.getElementById('btn-es').classList.toggle('active',l==='es');
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+  document.documentElement.lang=l==='es'?'es':'en';
+}
+</script>
+</body>
+</html>
