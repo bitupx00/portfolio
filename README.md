@@ -92,7 +92,7 @@ Panel de administración financiera de escritorio para gestionar los cobros mens
 
 **Funcionalidad completa:**
 
-- Tabla mensual estilo hoja de cálculo de **21 columnas** (impuestos, contabilidad, previsión, visas, certificados, multas, trámites, patentes, rentas…), coloreado en 3 niveles, menú contextual, navegación tipo Excel
+- Tabla mensual estilo hoja de cálculo con **21 columnas**: deuda_anterior, abono, impuesto, contabilidad (base + recargo por empleados), previsión ×4 (prev_1–prev_4), visa, certificados, legalización, multa, trámites, patente, renta, servicios extra, anticipos, pagos — coloreado en 3 niveles, menú contextual, navegación tipo Excel
 - **Comprobantes PDF** individuales y en lote con **fuente CJK embebida** (Noto Sans SC subset) para conceptos bilingües español/chino
 - **Modo colaborativo multi-operador:** cola de aprobaciones, indicador de presencia, changelog, notificaciones
 - **Verificación tributaria cruzada:** cruce automático del impuesto declarado contra lo efectivamente cobrado
