@@ -92,7 +92,7 @@ Panel de administración financiera de escritorio para gestionar los cobros mens
 
 **Funcionalidad completa:**
 
-- Tabla mensual estilo hoja de cálculo con **21 columnas**: deuda_anterior, abono, impuesto, contabilidad (base + recargo por empleados), previsión ×4 (prev_1–prev_4), visa, certificados, legalización, multa, trámites, patente, renta, servicios extra, anticipos, pagos — coloreado en 3 niveles, menú contextual, navegación tipo Excel
+- Tabla mensual estilo hoja de cálculo con **21 columnas de conceptos de cobro** (impuestos, contabilidad, previsión, visas, certificados, multas, trámites, patentes, rentas y más), coloreado en 3 niveles, menú contextual, navegación tipo Excel
 - **Comprobantes PDF** individuales y en lote con **fuente CJK embebida** (Noto Sans SC subset) para conceptos bilingües español/chino
 - **Modo colaborativo multi-operador:** cola de aprobaciones, indicador de presencia, changelog, notificaciones
 - **Verificación tributaria cruzada:** cruce automático del impuesto declarado contra lo efectivamente cobrado
@@ -203,7 +203,7 @@ Desktop financial administration panel managing monthly collections for ~1,000-c
 
 **Full feature set:**
 
-- Spreadsheet-style monthly table with **21 columns**: prior_debt, credit, tax, accounting (base + per-employee surcharge), payroll ×4 (prev_1–prev_4), visa, certificates, legalization, fines, procedures, license, rent, extra services, prepayments, payments — 3-level color coding, context menu, Excel-like navigation
+- Spreadsheet-style monthly table with **21 billing-concept columns** (taxes, accounting, payroll, visas, certificates, fines, procedures, licenses, rents and more), 3-level color coding, context menu, Excel-like navigation
 - **PDF receipts** individual and batch with **embedded CJK font** (Noto Sans SC subset) for Spanish/Chinese bilingual concepts
 - **Multi-operator collaborative mode:** approval queue, presence indicators, changelog, notifications
 - **Cross-check tax verification:** automatic reconciliation of declared tax vs. actually billed
