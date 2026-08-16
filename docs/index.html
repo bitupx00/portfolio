@@ -31,7 +31,7 @@ h1 .hl{color:var(--green)}
 
 /* NAV */
 nav{position:sticky;top:0;background:rgba(13,17,23,.92);backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--border);z-index:10}
+  border-border:1px solid var(--border);z-index:10;border-bottom:1px solid var(--border)}
 nav .wrap{display:flex;justify-content:space-between;align-items:center;padding:14px 24px}
 nav .links{display:flex;gap:22px;font-size:.95rem}
 .lang-switch{display:flex;gap:8px}
@@ -60,15 +60,13 @@ h2 .hl{color:var(--green)}
 .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .card h3{font-size:1.15rem}
 .card h3 a{color:var(--text)}
-.lock-tag{background:rgba(248,81,73,.12);color:var(--lock);border:1px solid rgba(248,81,73,.4);
-  border-radius:6px;padding:2px 10px;font-size:.7rem;font-weight:700;letter-spacing:1px;white-space:nowrap}
 .tag{border-radius:6px;padding:2px 10px;font-size:.7rem;font-weight:700;letter-spacing:1px;white-space:nowrap}
 .tag.live{background:rgba(0,255,65,.1);color:var(--green);border:1px solid rgba(0,255,65,.35)}
+.tag.prod{background:rgba(210,153,34,.12);color:var(--gold);border:1px solid rgba(210,153,34,.4)}
 .card p{color:var(--muted);font-size:.92rem;flex:1}
 .card .tech{display:flex;flex-wrap:wrap;gap:6px}
 .card .tech span{font-family:Consolas,monospace;font-size:.72rem;color:var(--accent);
   background:rgba(88,166,255,.08);border:1px solid rgba(88,166,255,.2);border-radius:4px;padding:2px 8px}
-.card .note{font-size:.8rem;color:var(--lock);border-left:3px solid rgba(248,81,73,.5);padding-left:10px}
 
 /* DETAILS (expandable) */
 .details-toggle{background:transparent;border:1px solid var(--border);color:var(--accent);
@@ -127,9 +125,9 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
   <div class="wrap">
     <div style="font-weight:800"><span style="color:var(--green)">&gt;_</span> Brad M Blanco</div>
     <div class="links">
-      <a href="#sobre-mi" data-lang-es>Sobre mí</a><a href="#about" data-lang-en>About</a>
-      <a href="#proyectos" data-lang-es>Proyectos</a><a href="#projects" data-lang-en>Projects</a>
-      <a href="#contacto" data-lang-es>Contacto</a><a href="#contact" data-lang-en>Contact</a>
+      <a href="#about" data-lang-es>Sobre mí</a><a href="#about" data-lang-en>About</a>
+      <a href="#projects" data-lang-es>Proyectos</a><a href="#projects" data-lang-en>Projects</a>
+      <a href="#contact" data-lang-es>Contacto</a><a href="#contact" data-lang-en>Contact</a>
     </div>
     <div class="lang-switch">
       <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
@@ -147,7 +145,8 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
       <div class="badge">⚛️ <b>React 19</b> / Next.js 16</div>
       <div class="badge">🖥️ <b>Electron</b> / Tauri 2</div>
       <div class="badge">🐘 <b>PostgreSQL</b> 17 + pgvector</div>
-      <div class="badge">🤖 RAG / AI integrations</div>
+      <div class="badge">🐙 Browser automation</div>
+      <div class="badge">🤖 RAG / MCP / AI</div>
       <div class="badge">🎮 Real-time / WebRTC</div>
     </div>
   </div>
@@ -162,16 +161,16 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
     <p class="sub" data-lang-en>Santiago, Chile · available for freelance</p>
     <div class="about-grid">
       <div>
-        <p data-lang-es>Desarrollador full-stack y analista IT. Construyo sistemas empresariales reales: plataformas de gestión contable, automatización de procesos, juegos online y herramientas con IA. No hago demos — hago productos con tests, CI y documentación que operan con empresas reales.</p>
-        <p data-lang-en>Full-stack developer and IT analyst. I build real enterprise systems: management platforms, process automation, online games and AI tooling. I don't build demos — I build products with tests, CI and docs that run for real businesses.</p>
+        <p data-lang-es>Desarrollador full-stack y analista IT. Construyo sistemas empresariales reales: plataformas de gestión, automatización de portales externos, juegos online y herramientas con IA. No hago demos — hago productos con tests, CI y documentación que operan con empresas reales.</p>
+        <p data-lang-en>Full-stack developer and IT analyst. I build real enterprise systems: management platforms, external-portal automation, online games and AI tooling. I don't build demos — I build products with tests, CI and docs that run for real businesses.</p>
         <div class="stack">
           <h3 data-lang-es>Stack principal</h3><h3 data-lang-en>Core stack</h3>
           <div class="chips">
             <span class="chip">Rust</span><span class="chip">TypeScript 5.9</span><span class="chip">React 19</span>
             <span class="chip">Next.js 16</span><span class="chip">Python</span><span class="chip">Electron 28</span>
             <span class="chip">Tauri 2</span><span class="chip">PostgreSQL 17</span><span class="chip">pgvector</span>
-            <span class="chip">WebSocket</span><span class="chip">Docker</span><span class="chip">PM2</span>
-            <span class="chip">Playwright</span><span class="chip">Sentry</span>
+            <span class="chip">WebSocket</span><span class="chip">Chrome Ext MV3</span><span class="chip">MCP</span>
+            <span class="chip">Docker</span><span class="chip">PM2</span><span class="chip">Playwright</span><span class="chip">Sentry</span>
           </div>
         </div>
       </div>
@@ -179,7 +178,7 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
         <div class="stat"><div class="num">14+</div><div class="lbl" data-lang-es>módulos en producción</div><div class="lbl" data-lang-en>modules in production</div></div>
         <div class="stat"><div class="num">429+</div><div class="lbl" data-lang-es>rutas API</div><div class="lbl" data-lang-en>API routes</div></div>
         <div class="stat"><div class="num">186+</div><div class="lbl">tablas PostgreSQL</div></div>
-        <div class="stat"><div class="num">8h→15m</div><div class="lbl" data-lang-es>procesos automatizados</div><div class="lbl" data-lang-en>processes automated</div></div>
+        <div class="stat"><div class="num">70+</div><div class="lbl" data-lang-es>canales IPC</div><div class="lbl" data-lang-en>IPC channels</div></div>
       </div>
     </div>
   </div>
@@ -190,23 +189,24 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
   <div class="wrap">
     <h2 data-lang-es><span class="hl">02.</span> Proyectos</h2>
     <h2 data-lang-en><span class="hl">02.</span> Projects</h2>
-    <p class="sub" data-lang-es>Productos en producción + código abierto. Los proyectos privados se describen técnicamente completos; datos de negocio bajo confidencialidad.</p>
-    <p class="sub" data-lang-en>Production products + open source. Private projects get full technical detail; business data stays confidential.</p>
+    <p class="sub" data-lang-es>De plataformas empresariales en producción a juegos online y herramientas con IA.</p>
+    <p class="sub" data-lang-en>From production enterprise platforms to online games and AI tooling.</p>
     <div class="grid">
 
       <!-- HUABODESK -->
       <div class="card" style="grid-column:1/-1">
         <div class="top">
-          <h3>🔒 HuaboDesk</h3>
-          <div style="display:flex;gap:8px"><span class="lock-tag">CONFIDENTIAL</span><span class="tag live" data-lang-es>EN PRODUCCIÓN</span><span class="tag live" data-lang-en>IN PRODUCTION</span></div>
+          <h3>🏢 HuaboDesk</h3>
+          <span class="tag live" data-lang-es>EN PRODUCCIÓN</span><span class="tag live" data-lang-en>IN PRODUCTION</span>
         </div>
-        <p data-lang-es>Suite empresarial contable integral para el mercado chileno: contabilidad, remuneraciones, cumplimiento tributario SII, gestión documental, correo corporativo y colaboración. 14+ módulos integrados operando con empresas reales.</p>
-        <p data-lang-en>All-in-one accounting & business management suite for the Chilean market: accounting, payroll, SII tax compliance, document management, corporate email and collaboration. 14+ integrated modules serving real businesses.</p>
+        <p data-lang-es>Suite empresarial contable integral para el mercado chileno. 14+ módulos, 429+ rutas API, 186+ tablas PostgreSQL operando con empresas reales.</p>
+        <p data-lang-en>All-in-one accounting & business management suite for the Chilean market. 14+ modules, 429+ API routes, 186+ PostgreSQL tables serving real businesses.</p>
         <div class="metrics">
           <div class="metric"><div class="n">429+</div><div class="l">API routes</div></div>
           <div class="metric"><div class="n">186+</div><div class="l">DB tables</div></div>
           <div class="metric"><div class="n">70+</div><div class="l">IPC channels</div></div>
           <div class="metric"><div class="n">14k</div><div class="l">graph nodes</div></div>
+          <div class="metric"><div class="n">143</div><div class="l">test files</div></div>
           <div class="metric"><div class="n">14+</div><div class="l">módulos/modules</div></div>
         </div>
         <button class="details-toggle" onclick="toggleDetails(this)" data-lang-es>⚡ Detalle técnico <span class="arrow">▾</span></button>
@@ -217,38 +217,78 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
             <li><b>Web:</b> Next.js 16 (App Router) + React 19 + TypeScript 5.9 — 429+ rutas API, SSR</li>
             <li><b>Base de datos:</b> PostgreSQL 17 — 186+ tablas, 27 funciones SQL, <b>pgvector</b> para búsqueda semántica</li>
             <li><b>Multi-proceso (PM2):</b> servidor web + WebSocket independiente + indexación RAG + workers de fondo (vigilancia documental, retención de correo, conciliación RAG, auto-deploy)</li>
-            <li><b>Desktop (Electron 28):</b> 70+ canales IPC con whitelist estricta, scraping del portal SII vía Playwright, bandeja de sistema, auto-actualización NSIS, sincronización de archivos con motor Rust</li>
-            <li><b>Seguridad:</b> JWT + refresh, bcrypt, RBAC, TOTP 2FA, context isolation + sandbox, Sentry</li>
+            <li><b>Desktop (Electron 28):</b> 70+ canales IPC con whitelist, automatización web integrada (Playwright), bandeja de sistema, auto-actualización NSIS, sincronización de archivos con motor Rust, <b>sistema multi-ventana</b> (cada módulo como ventana OS independiente)</li>
+            <li><b>Seguridad:</b> JWT + refresh, bcrypt, RBAC multi-rol, TOTP 2FA, CSRF, context isolation + sandbox, Sentry</li>
           </ul>
-          <h4 data-lang-es>Módulos</h4><h4 data-lang-en>Modules</h4>
+          <h4 data-lang-es>Sistemas construidos</h4><h4 data-lang-en>Systems built</h4>
           <ul>
-            <li><b>Contabilidad/SII:</b> libros de compras y ventas, declaraciones mensuales, ajustes código 48, exportación CSV SII, certificación SII, verificación F29</li>
-            <li><b>Remuneraciones:</b> liquidaciones de sueldo, finiquitos, proceso Previred</li>
-            <li><b>Finanzas:</b> estado financiero, panel de cobros PayBoard integrado</li>
-            <li><b>Comunicación:</b> mail corporativo completo (compose, búsqueda global, cola de reintentos), chat de equipo con adjuntos (HeChat)</li>
-            <li><b>Documentos:</b> gestión con watcher en tiempo real, búsqueda IA con <b>RAG + pgvector</b>, extracción documental con IA</li>
-            <li><b>Operación:</b> motor de workflows con recordatorios/aprobaciones, Gantt de proyectos, asistencia, atención de clientes, coordinación, informes Excel</li>
-            <li><b>Administración:</b> equipos y roles, logs de auditoría, registro con aprobación</li>
+            <li><b>CRM / Clientes:</b> fichas completas (24+ componentes: búsqueda avanzada, sucursales, cuentas bancarias, formularios SPA), contactos, contratos, empresas y <b>grupos empresariales</b> multi-empresa</li>
+            <li><b>Contabilidad:</b> libros de compras/ventas con edición inline, reglas por cuenta, ajustes, declaraciones mensuales, exportación CSV, estado financiero con informes</li>
+            <li><b>Remuneraciones:</b> empleados v2, liquidaciones de sueldo, finiquitos, alta con generador de contratos y documentos, horarios, asistencia, evaluaciones</li>
+            <li><b>HeChat — chat de equipo:</b> grupos, <b>@mentions</b>, stickers, emojis, typing indicator, búsqueda, reacciones, adjuntos con visor, citas, acceso por empresa</li>
+            <li><b>Correo corporativo:</b> webmail completo — compose, <b>búsqueda global</b>, cola de reintentos con panel de fallos, retención automática, operaciones admin</li>
+            <li><b>Motor de workflows:</b> timeline unificado tipo chat, estados con acciones, prioridades, comentarios con reacciones, adjuntos, asignación multiusuario, recordatorios</li>
+            <li><b>Operación:</b> Gantt de proyectos, calendario con eventos + feriados, coordinación de equipo, atención de clientes con reasignación de cartera, broadcast global</li>
+            <li><b>Documentos:</b> gestión con watcher en tiempo real, Dropbox, <b>búsqueda IA RAG + pgvector</b>, extracción documental con IA</li>
+            <li><b>IA de autollenado (Empleados v2):</b> worker en segundo plano con cola de jobs que <b>lee los documentos de un empleado (PDF/escaneos), los procesa con OCR y extracción IA, y rellena automáticamente su ficha</b> — reintentos con backoff, control de intentos máximos, panel de estado y re-encolado manual</li>
+            <li><b>Pipeline OCR triple motor:</b> <b>Tesseract</b> + EasyOCR + Vision API con fallback automático entre motores, renderizado de PDFs, extracción de identificadores y normalización</li>
+            <li><b>Generador de documentos y contratos:</b> motor de plantillas DOCX (docxtpl/Jinja2) con post-procesamiento XML — genera contratos laborales y documentos legales personalizados desde los datos del empleado/empresa, ventana propia en el cliente de escritorio con selección de tipo, vista previa y guardado</li>
+            <li><b>Sincronización Dropbox:</b> scanners por empresa y de RRHH con indexación automática — submenú de documentos de empleados con exportación, control de vencimientos y actividad reciente</li>
+            <li><b>Otras automatizaciones:</b> worker pool de verificación fiscal con lectura de archivos, bus en tiempo real de cobros, retención de correo, backups DB programados, deploy con lock remoto + watchdog, IA de ajedrez integrada</li>
+            <li><b>Administración:</b> equipos y roles, logs de auditoría, registro con aprobación, configuración global, health checks, geocoding, integración stock photos</li>
           </ul>
           <h4 data-lang-es>Ingeniería avanzada</h4><h4 data-lang-en>Advanced engineering</h4>
           <ul>
-            <li>Grafo de conocimiento del codebase: <b>14.009 nodos, 46.142 aristas, 512 comunidades</b> — análisis arquitectónico y detección de deuda técnica</li>
-            <li>Tests: suite Vitest + Playwright</li>
+            <li>Grafo de conocimiento del codebase: <b>14.009 nodos, 46.142 aristas, 512 comunidades</b></li>
+            <li>Suite de tests: 143 archivos (Vitest + Playwright)</li>
+            <li>Monitoreo Sentry + auto-deploy con PM2</li>
           </ul>
         </div>
-        <div class="note" data-lang-es>Proyecto confidencial — clientes y datos de negocio no públicos. Alcance conversable bajo NDA.</div>
-        <div class="note" data-lang-en>Confidential — clients and business data not public. Scope discussable under NDA.</div>
         <div class="tech"><span>Next.js 16</span><span>React 19</span><span>TypeScript 5.9</span><span>PostgreSQL 17</span><span>pgvector</span><span>Electron 28</span><span>Playwright</span><span>PM2</span><span>Sentry</span></div>
+      </div>
+
+      <!-- OPTOPUS -->
+      <div class="card" style="grid-column:1/-1">
+        <div class="top">
+          <h3>🐙 Optopus</h3>
+          <span class="tag prod">BROWSER AUTOMATION</span>
+        </div>
+        <p data-lang-es>Sistema de automatización web adaptativo que ejecuta operaciones en portales y sistemas externos usando el navegador real del usuario vía extensión de Chrome — sin Playwright, sin headless. Sesiones logueadas reales, fingerprint genuino, evita CAPTCHAs y detección de bots.</p>
+        <p data-lang-en>Adaptive web automation system that performs operations on external portals and systems using the user's real browser via a Chrome extension — no Playwright, no headless. Real logged sessions, genuine fingerprint, bypasses CAPTCHAs and bot detection.</p>
+        <div class="metrics">
+          <div class="metric"><div class="n">MV3</div><div class="l">Chrome Ext</div></div>
+          <div class="metric"><div class="n">WS</div><div class="l">remote control</div></div>
+          <div class="metric"><div class="n">MCP</div><div class="l">AI-ready</div></div>
+          <div class="metric"><div class="n">0</div><div class="l">install (MB)</div></div>
+        </div>
+        <button class="details-toggle" onclick="toggleDetails(this)" data-lang-es>⚡ Detalle técnico <span class="arrow">▾</span></button>
+        <button class="details-toggle" onclick="toggleDetails(this)" data-lang-en>⚡ Technical detail <span class="arrow">▾</span></button>
+        <div class="details">
+          <h4 data-lang-es>Qué hace</h4><h4 data-lang-en>What it does</h4>
+          <ul>
+            <li>Ejecuta operaciones automatizadas en sistemas y portales externos en nombre del usuario: navegación, llenado de formularios, descarga de documentos, extracción de datos</li>
+            <li>Usa el <b>navegador real del usuario</b> con su perfil y sesión logueada — fingerprint genuino, imposible de distinguir de un humano</li>
+            <li><b>Scraping adaptativo</b> (inspirado en Scrapling): localiza elementos aunque la estructura del sitio cambie — selectores resilientes con recuperación automática</li>
+          </ul>
+          <h4 data-lang-es>Arquitectura</h4><h4 data-lang-en>Architecture</h4>
+          <ul>
+            <li><b>Extensión Chrome MV3:</b> content scripts con capacidad de operar en múltiples dominios</li>
+            <li><b>Servidor Node:</b> API HTTP + WebSocket para disparar operaciones remotamente desde la plataforma</li>
+            <li><b>MCP server:</b> controlable por asistentes de IA (Claude, Cursor, Windsurf) — los agentes ejecutan operaciones de navegador como herramientas nativas</li>
+            <li><b>Zero-install:</b> solo la extensión, sin descargar navegadores (~300–500 MB ahorrados vs Playwright)</li>
+          </ul>
+        </div>
+        <div class="tech"><span>TypeScript</span><span>Chrome Extension MV3</span><span>WebSocket</span><span>MCP</span><span>Node.js</span></div>
       </div>
 
       <!-- PAYBOARD -->
       <div class="card" style="grid-column:1/-1">
         <div class="top">
-          <h3>🔒 PayBoard</h3>
-          <div style="display:flex;gap:8px"><span class="lock-tag">CONFIDENTIAL</span><span class="tag live">RUST + TAURI 2</span></div>
+          <h3>💰 PayBoard</h3>
+          <span class="tag live">RUST + TAURI 2</span>
         </div>
-        <p data-lang-es>Panel de administración financiera de escritorio para gestionar los cobros mensuales de carteras de ~1.000 clientes de contabilidad. Reconstruido como aplicación 100% nativa en Rust + Tauri 2: un binario único con webview del sistema.</p>
-        <p data-lang-en>Desktop financial administration panel managing monthly collections for ~1,000-client accounting portfolios. Rebuilt as a 100% native Rust + Tauri 2 application: a single binary using the system webview.</p>
+        <p data-lang-es>Panel de administración financiera de escritorio para gestionar los cobros mensuales de carteras de ~1.000 clientes de contabilidad. Construido como aplicación 100% nativa: un binario único en Rust con webview del sistema.</p>
+        <p data-lang-en>Desktop financial administration panel managing monthly collections for ~1,000-client accounting portfolios. Built as a 100% native application: a single Rust binary with the system webview.</p>
         <div class="metrics">
           <div class="metric"><div class="n">21</div><div class="l">columnas tabla</div></div>
           <div class="metric"><div class="n">~90</div><div class="l">conceptos</div></div>
@@ -262,25 +302,23 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
           <ul>
             <li>Propagación de saldos mes a mes: deuda N → N+1, sobrepago → abono — saldos jamás editables a mano</li>
             <li>Anticipos con signo (negativos = a favor del cliente), pagos con valor absoluto</li>
-            <li>Parseo monetario CLP estricto (formato 1.500.000, rechazo de basura — nunca dígitos parciales)</li>
-            <li><b>Golden tests de paridad</b> que congelan cada regla de negocio como contrato ejecutable</li>
+            <li>Parseo monetario estricto (formato 1.500.000, rechazo de basura — nunca dígitos parciales)</li>
+            <li><b>Golden tests de paridad</b> congelando cada regla de negocio como contrato ejecutable</li>
           </ul>
           <h4 data-lang-es>Funcionalidad</h4><h4 data-lang-en>Features</h4>
           <ul>
-            <li>Tabla mensual estilo hoja de cálculo de <b>21 columnas</b> (impuestos, contabilidad, previred, visas, certificados, multas, trámites, patentes, rentas…), coloreado 3 niveles, menú contextual, navegación tipo Excel</li>
-            <li><b>Comprobantes PDF</b> individuales y batch con <b>fuente CJK embebida</b> (Noto Sans SC subset) para conceptos bilingües ES/ZH</li>
+            <li>Tabla mensual estilo hoja de cálculo con <b>21 columnas</b> — deuda_anterior, abono, impuesto, contabilidad (base + recargo por empleados), previsión ×4 (prev_1–prev_4), visa, certificados, legalización, multa, trámites, patente, renta, servicios extra, anticipos, pagos — coloreado en 3 niveles, menú contextual, navegación tipo Excel</li>
+            <li><b>Comprobantes PDF</b> individuales y batch con <b>fuente CJK embebida</b> (Noto Sans SC) para conceptos bilingües ES/ZH</li>
             <li><b>Modo colaborativo multi-operador:</b> cola de aprobaciones, presencia, changelog, notificaciones</li>
-            <li><b>Verificación F29:</b> cruce automático del impuesto declarado al SII vs. lo efectivamente cobrado</li>
+            <li><b>Verificación tributaria cruzada:</b> cruce automático del impuesto declarado vs. lo cobrado</li>
             <li>Import/export Excel, atajos configurables, roles granulares, sistema de diseño propio</li>
           </ul>
           <h4 data-lang-es>Por qué nativo</h4><h4 data-lang-en>Why native</h4>
           <ul>
-            <li>Elimina servidor Node + Chromium embebido → binario de unidades de MB, RAM objetivo ~80–150 MB, arranque sub-segundo</li>
-            <li>Un único motor financiero tipado y testeado (antes había dos motores divergentes)</li>
+            <li>Elimina servidor Node + Chromium embebido → binario de unidades de MB, RAM ~80–150 MB, arranque sub-segundo</li>
+            <li>Un único motor financiero tipado y testeado</li>
           </ul>
         </div>
-        <div class="note" data-lang-es>Proyecto confidencial — código y datos no públicos.</div>
-        <div class="note" data-lang-en>Confidential — code and data not public.</div>
         <div class="tech"><span>Rust</span><span>Tauri 2</span><span>PostgreSQL</span><span>PDF/CJK</span><span>Golden tests</span></div>
       </div>
 
