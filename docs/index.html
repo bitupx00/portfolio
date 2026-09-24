@@ -124,6 +124,20 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
   box-shadow:0 6px 24px rgba(0,0,0,.14);background:#fff}
 .shot figcaption{font-size:.78rem;opacity:.7;margin-top:6px;text-align:center}
 .shots-nota{font-size:.74rem;opacity:.6;margin:2px 0 0;font-style:italic}
+/* galería con selector de secciones */
+.gal{margin:18px 0 4px}
+.gal-nav{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+.gal-b{font:inherit;font-size:.76rem;padding:6px 13px;border-radius:999px;cursor:pointer;
+  border:1px solid rgba(128,128,128,.32);background:transparent;color:inherit;opacity:.72;
+  transition:background .22s ease,opacity .22s ease,border-color .22s ease,transform .22s ease}
+.gal-b:hover{opacity:1;transform:translateY(-1px);border-color:rgba(128,128,128,.6)}
+.gal-b.on{opacity:1;background:rgba(127,127,127,.16);border-color:currentColor;font-weight:600}
+.gal-box{position:relative}
+.gal-box figure.shot{display:none;margin:0}
+.gal-box figure.shot.on{display:block;animation:galIn .42s cubic-bezier(.22,1,.36,1)}
+@keyframes galIn{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
+.gal-box figcaption{font-size:.78rem;opacity:.7;margin-top:8px;text-align:center}
+
 .shot img{cursor:zoom-in;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease}
 .shot img:hover{transform:translateY(-3px) scale(1.012);box-shadow:0 14px 40px rgba(0,0,0,.28)}
 
@@ -361,9 +375,12 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
           <div class="metric"><div class="n">1</div><div class="l">binario único</div></div>
         </div>
         <div class="shots" style="grid-template-columns:minmax(280px,720px)">
-          <figure class="shot"><img src="img/payboard-01-panel.png" alt="PayBoard v3 — acceso" loading="lazy">
-            <figcaption data-lang-es>Cliente de escritorio en Rust (Tauri 2) — acceso interno</figcaption>
-            <figcaption data-lang-en>Rust desktop client (Tauri 2) — internal sign-in</figcaption></figure>
+          <figure class="shot"><img src="img/payboard-02-interior.png" alt="PayBoard — grilla de cobros" loading="lazy">
+            <figcaption data-lang-es>Grilla de cobros: 21 columnas de conceptos sobre 1.121 clientes</figcaption>
+            <figcaption data-lang-en>Billing grid: 21 concept columns across 1,121 clients</figcaption></figure>
+          <figure class="shot"><img src="img/payboard-01-panel.png" alt="PayBoard — acceso" loading="lazy">
+            <figcaption data-lang-es>Acceso interno del cliente de escritorio</figcaption>
+            <figcaption data-lang-en>Desktop client internal sign-in</figcaption></figure>
         </div>
         <button class="details-toggle" onclick="toggleDetails(this)" data-lang-es>⚡ Detalle técnico <span class="arrow">▾</span></button>
         <button class="details-toggle" onclick="toggleDetails(this)" data-lang-en>⚡ Technical detail <span class="arrow">▾</span></button>
@@ -468,6 +485,39 @@ function setLang(l){
 function toggleDetails(btn){
   btn.closest('.card').classList.toggle('open');
 }
+
+/* ── Galería por secciones: lista seleccionable + una imagen a la vez ── */
+(function(){
+  document.querySelectorAll('.shots').forEach(grid => {
+    const figs = [...grid.querySelectorAll('figure.shot')];
+    if (figs.length < 2) return;                     // con una sola captura no hace falta selector
+    const etiqueta = f => {
+      const a = f.querySelector('img').getAttribute('alt') || '';
+      const p = a.split('—');
+      return (p[1] || p[0] || '').trim() || 'Vista';
+    };
+    const cont = document.createElement('div'); cont.className = 'gal';
+    const nav  = document.createElement('div'); nav.className = 'gal-nav';
+    const box  = document.createElement('div'); box.className = 'gal-box';
+    figs.forEach((f, i) => {
+      const b = document.createElement('button');
+      b.className = 'gal-b' + (i === 0 ? ' on' : '');
+      b.textContent = etiqueta(f);
+      b.addEventListener('click', () => {
+        if (b.classList.contains('on')) return;
+        nav.querySelectorAll('.gal-b').forEach(x => x.classList.remove('on'));
+        box.querySelectorAll('figure.shot').forEach(x => x.classList.remove('on'));
+        b.classList.add('on');
+        figs[i].classList.add('on');
+      });
+      nav.appendChild(b);
+      if (i === 0) f.classList.add('on');
+      box.appendChild(f);
+    });
+    cont.appendChild(nav); cont.appendChild(box);
+    grid.replaceWith(cont);
+  });
+})();
 
 /* ── Visor de capturas: apertura FLIP desde la miniatura + zoom que sigue al puntero ── */
 (function(){
