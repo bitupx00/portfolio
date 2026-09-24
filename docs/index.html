@@ -117,6 +117,13 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
   .about-grid{grid-template-columns:1fr}
   nav .links{display:none}
 }
+/* capturas de pantalla */
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:18px 0 4px}
+.shot{margin:0}
+.shot img{width:100%;height:auto;display:block;border-radius:10px;border:1px solid rgba(128,128,128,.28);
+  box-shadow:0 6px 24px rgba(0,0,0,.14);background:#fff}
+.shot figcaption{font-size:.78rem;opacity:.7;margin-top:6px;text-align:center}
+.shots-nota{font-size:.74rem;opacity:.6;margin:2px 0 0;font-style:italic}
 </style>
 </head>
 <body class="lang-es">
@@ -209,6 +216,22 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
           <div class="metric"><div class="n">143</div><div class="l">test files</div></div>
           <div class="metric"><div class="n">14+</div><div class="l">módulos/modules</div></div>
         </div>
+        <div class="shots">
+          <figure class="shot"><img src="img/huabodesk-01-dashboard.png" alt="HuaboDesk — panel principal" loading="lazy">
+            <figcaption data-lang-es>Panel principal: accesos, calendario y utilidades</figcaption>
+            <figcaption data-lang-en>Main dashboard: shortcuts, calendar and utilities</figcaption></figure>
+          <figure class="shot"><img src="img/huabodesk-02-clientes.png" alt="HuaboDesk — gestión de clientes" loading="lazy">
+            <figcaption data-lang-es>Gestión de clientes con búsqueda y estados</figcaption>
+            <figcaption data-lang-en>Client management with search and statuses</figcaption></figure>
+          <figure class="shot"><img src="img/huabodesk-03-libros.png" alt="HuaboDesk — libros contables" loading="lazy">
+            <figcaption data-lang-es>Libros contables: F29, ventas, compras, honorarios</figcaption>
+            <figcaption data-lang-en>Accounting books: F29, sales, purchases, fees</figcaption></figure>
+          <figure class="shot"><img src="img/huabodesk-04-hechat.png" alt="HuaboDesk — HeChat" loading="lazy">
+            <figcaption data-lang-es>HeChat: mensajería interna por empresa</figcaption>
+            <figcaption data-lang-en>HeChat: internal messaging per company</figcaption></figure>
+        </div>
+        <p class="shots-nota" data-lang-es>Capturas de la aplicación real. Nombres, RUT, direcciones y mensajes fueron reemplazados por datos ficticios.</p>
+        <p class="shots-nota" data-lang-en>Screenshots of the real application. Names, tax IDs, addresses and messages replaced with fictitious data.</p>
         <button class="details-toggle" onclick="toggleDetails(this)" data-lang-es>⚡ Detalle técnico <span class="arrow">▾</span></button>
         <button class="details-toggle" onclick="toggleDetails(this)" data-lang-en>⚡ Technical detail <span class="arrow">▾</span></button>
         <div class="details">
