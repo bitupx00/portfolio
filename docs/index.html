@@ -124,6 +124,31 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
   box-shadow:0 6px 24px rgba(0,0,0,.14);background:#fff}
 .shot figcaption{font-size:.78rem;opacity:.7;margin-top:6px;text-align:center}
 .shots-nota{font-size:.74rem;opacity:.6;margin:2px 0 0;font-style:italic}
+.shot img{cursor:zoom-in;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease}
+.shot img:hover{transform:translateY(-3px) scale(1.012);box-shadow:0 14px 40px rgba(0,0,0,.28)}
+
+/* visor a pantalla completa */
+.viewer{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:14px;padding:3vmin;
+  background:rgba(8,10,16,.82);backdrop-filter:blur(14px) saturate(1.2);
+  opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+.viewer.open{opacity:1;visibility:visible}
+.viewer-stage{margin:0;max-width:94vw;max-height:80vh;overflow:hidden;border-radius:12px;
+  box-shadow:0 30px 90px rgba(0,0,0,.6);line-height:0;cursor:zoom-in}
+.viewer-stage.zoom{cursor:zoom-out}
+.viewer-stage img{display:block;max-width:94vw;max-height:80vh;width:auto;height:auto;will-change:transform}
+.viewer-cap{color:#fff;font-size:.9rem;opacity:0;transform:translateY(8px);
+  transition:opacity .4s ease .12s,transform .4s ease .12s;text-align:center;max-width:70ch}
+.viewer.open .viewer-cap{opacity:.92;transform:none}
+.viewer-hint{color:#fff;font-size:.72rem;opacity:0;transition:opacity .5s ease .25s}
+.viewer.open .viewer-hint{opacity:.5}
+.viewer-x{position:absolute;top:18px;right:22px;width:42px;height:42px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;
+  font-size:1.5rem;line-height:1;cursor:pointer;transition:background .2s ease,transform .2s ease}
+.viewer-x:hover{background:rgba(255,255,255,.2);transform:rotate(90deg)}
+@media (prefers-reduced-motion:reduce){
+  .shot img,.shot img:hover,.viewer,.viewer-cap,.viewer-stage img{transition:none!important;transform:none!important}
+}
 </style>
 </head>
 <body class="lang-es">
@@ -229,6 +254,9 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
           <figure class="shot"><img src="img/huabodesk-04-hechat.png" alt="HuaboDesk — HeChat" loading="lazy">
             <figcaption data-lang-es>HeChat: mensajería interna por empresa</figcaption>
             <figcaption data-lang-en>HeChat: internal messaging per company</figcaption></figure>
+          <figure class="shot"><img src="img/huabodesk-05-empleados-hbask.png" alt="HuaboDesk — Empleados V3 con asistente HBAsk" loading="lazy">
+            <figcaption data-lang-es>Empleados V3 (11 pantallas) con HBAsk, el asistente de RRHH sobre RAG</figcaption>
+            <figcaption data-lang-en>Employees V3 (11 screens) with HBAsk, the RAG-based HR assistant</figcaption></figure>
         </div>
         <p class="shots-nota" data-lang-es>Capturas de la aplicación real. Nombres, RUT, direcciones y mensajes fueron reemplazados por datos ficticios.</p>
         <p class="shots-nota" data-lang-en>Screenshots of the real application. Names, tax IDs, addresses and messages replaced with fictitious data.</p>
@@ -376,12 +404,9 @@ body.lang-es span[data-lang-es],body.lang-es a[data-lang-es]{display:inline}
         <p data-lang-es>Parchís online estilo Ludo Club: WebRTC P2P sin servidor de juego (bot toma el asiento si alguien se desconecta), bots con personalidad, pasar-y-jugar, equipos 2v2, stickers, sonidos sintetizados, video-chat opcional. Bilingüe ES/EN, PWA mobile-first.</p>
         <p data-lang-en>Online Ludo Club-style parchís: WebRTC P2P with no game server (a bot takes the seat on disconnect), personality bots, pass-and-play, 2v2 teams, stickers, synthesized sounds, optional video chat. Bilingual, mobile-first PWA.</p>
         <div class="shots">
-          <figure class="shot"><img src="img/ludo-01-inicio.png" alt="Ludo Party — modos de juego" loading="lazy">
-            <figcaption data-lang-es>Modos: online, 6 jugadores, bots, 2v2</figcaption>
-            <figcaption data-lang-en>Modes: online, 6 players, bots, 2v2</figcaption></figure>
-          <figure class="shot"><img src="img/ludo-02-tablero.png" alt="Ludo Party — tablero en partida" loading="lazy">
-            <figcaption data-lang-es>Partida contra bots con personalidad</figcaption>
-            <figcaption data-lang-en>Match against personality bots</figcaption></figure>
+          <figure class="shot" style="grid-column:1/-1"><img src="img/ludo-01-inicio.png" alt="Ludo Party — tablero 3D" loading="lazy">
+            <figcaption data-lang-es>Tablero 3D con fichas animadas y configuración de partida (2–8 jugadores, local u online)</figcaption>
+            <figcaption data-lang-en>3D board with animated pieces and match setup (2–8 players, local or online)</figcaption></figure>
         </div>
         <div class="tech"><span>React</span><span>TypeScript</span><span>WebRTC</span><span>PWA</span></div>
       </div>
@@ -429,6 +454,117 @@ function setLang(l){
 function toggleDetails(btn){
   btn.closest('.card').classList.toggle('open');
 }
+
+/* ── Visor de capturas: apertura FLIP desde la miniatura + zoom que sigue al puntero ── */
+(function(){
+  const ov = document.createElement('div');
+  ov.className = 'viewer';
+  ov.innerHTML = '<figure class="viewer-stage"><img alt=""></figure>'
+    + '<div class="viewer-cap"></div>'
+    + '<button class="viewer-x" aria-label="Cerrar">&times;</button>'
+    + '<div class="viewer-hint"></div>';
+  document.body.appendChild(ov);
+
+  const stage = ov.querySelector('.viewer-stage');
+  const img   = ov.querySelector('img');
+  const cap   = ov.querySelector('.viewer-cap');
+  const hint  = ov.querySelector('.viewer-hint');
+  let z = 1, origen = null, raf = null, ox = 50, oy = 50;
+
+  const esES = () => document.body.classList.contains('lang-en') === false;
+
+  function aplicar(){
+    raf = null;
+    img.style.transformOrigin = ox + '% ' + oy + '%';
+    img.style.transform = 'scale(' + z + ')';
+  }
+  function pedir(){ if (!raf) raf = requestAnimationFrame(aplicar); }
+
+  function abrir(thumb){
+    origen = thumb;
+    img.src = thumb.src;
+    img.alt = thumb.alt || '';
+    const fig = thumb.closest('figure');
+    const c = fig && fig.querySelector('figcaption:not([hidden])');
+    cap.textContent = c ? c.textContent : (thumb.alt || '');
+    hint.textContent = esES() ? 'Rueda para acercar · movés el mouse y sigue el puntero · Esc para salir'
+                              : 'Scroll to zoom · it follows your pointer · Esc to close';
+    z = 1; ox = oy = 50;
+    img.style.transition = 'none';
+    aplicar();
+
+    // FLIP: arranca exactamente donde está la miniatura y se expande a su lugar final
+    ov.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    const a = thumb.getBoundingClientRect();
+    requestAnimationFrame(() => {
+      const b = img.getBoundingClientRect();
+      const sx = a.width / b.width, sy = a.height / b.height;
+      const dx = (a.left + a.width/2) - (b.left + b.width/2);
+      const dy = (a.top + a.height/2) - (b.top + b.height/2);
+      img.style.transition = 'none';
+      img.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + Math.min(sx,sy) + ')';
+      requestAnimationFrame(() => {
+        img.style.transition = 'transform .46s cubic-bezier(.22,1,.36,1)';
+        img.style.transform = 'scale(1)';
+      });
+    });
+  }
+
+  function cerrar(){
+    if (!ov.classList.contains('open')) return;
+    const a = origen && origen.getBoundingClientRect();
+    if (a){
+      const b = img.getBoundingClientRect();
+      const sx = a.width / b.width, sy = a.height / b.height;
+      const dx = (a.left + a.width/2) - (b.left + b.width/2);
+      const dy = (a.top + a.height/2) - (b.top + b.height/2);
+      img.style.transformOrigin = '50% 50%';
+      img.style.transition = 'transform .34s cubic-bezier(.4,0,.2,1)';
+      img.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + Math.min(sx,sy) + ')';
+    }
+    ov.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', e => {
+    const t = e.target.closest('.shot img');
+    if (t){ e.preventDefault(); abrir(t); }
+  });
+  ov.addEventListener('click', e => { if (e.target !== img) cerrar(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrar(); });
+
+  // el zoom se ancla donde está el puntero
+  stage.addEventListener('pointermove', e => {
+    if (z === 1) return;
+    const r = stage.getBoundingClientRect();
+    ox = Math.min(100, Math.max(0, ((e.clientX - r.left) / r.width) * 100));
+    oy = Math.min(100, Math.max(0, ((e.clientY - r.top) / r.height) * 100));
+    pedir();
+  });
+  stage.addEventListener('wheel', e => {
+    e.preventDefault();
+    const r = stage.getBoundingClientRect();
+    ox = ((e.clientX - r.left) / r.width) * 100;
+    oy = ((e.clientY - r.top) / r.height) * 100;
+    const nuevo = Math.min(4, Math.max(1, z - e.deltaY * 0.0022));
+    if (nuevo === z) return;
+    z = nuevo;
+    img.style.transition = 'transform .18s ease-out';
+    pedir();
+    stage.classList.toggle('zoom', z > 1);
+  }, { passive:false });
+  // doble clic: alterna entre 1x y 2.4x en el punto señalado
+  stage.addEventListener('dblclick', e => {
+    const r = stage.getBoundingClientRect();
+    ox = ((e.clientX - r.left) / r.width) * 100;
+    oy = ((e.clientY - r.top) / r.height) * 100;
+    z = z > 1 ? 1 : 2.4;
+    img.style.transition = 'transform .32s cubic-bezier(.22,1,.36,1)';
+    pedir();
+    stage.classList.toggle('zoom', z > 1);
+  });
+})();
 </script>
 </body>
 </html>
